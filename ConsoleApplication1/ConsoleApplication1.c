@@ -131,9 +131,49 @@ int main() {
 		case 5:
 			printf("%s\n", text);
 			break;
-		case 6:
-			
+		case 6: {
+			char text_to_insert[100];
+			int index;
+
+			printf("Enter index to insert: ");
+			scanf("%d", &index);
+			getchar();
+
+
+			printf("Enter text to insert: ");
+			fgets(text_to_insert, sizeof(text_to_insert), stdin);
+
+			int tti_len = strlen(text_to_insert);
+
+			if (tti_len > 0 && text_to_insert[tti_len - 1] == '\n') {
+				text_to_insert[tti_len - 1] = '\0';
+				tti_len--;
+			}
+
+			if (index < 0 || index > size) {
+				printf("Invalid index\n");
+				break;
+			}
+			if (size + tti_len >= 100) {
+				printf("Not enough memory\n");
+				break;
+			}
+
+			for (int i = size; i >= index; i--) {
+				text[i + tti_len] = text[i];
+			}
+
+			for (int i = 0; i < tti_len; i++) {
+				text[index + i] = text_to_insert[i];
+			}
+
+			size = size + tti_len;
+
+			printf("Inserted successfully\n");
+
+
 			break;
+		}
 		case 7: {
 			char querry[100];
 
