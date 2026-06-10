@@ -155,6 +155,12 @@ char** LoadFromFile(char** text, int* num_l_ptr, int* line_capacity_ptr) {
 	}
 
 	fclose(file);
+			*num_l_ptr = new_n_lines;
+			return text;
+		}
+		strcpy(text[new_n_lines], line);
+		new_n_lines++;
+	}
 
 	if (new_n_lines == 0) {
 		text[0] = malloc(1 * sizeof(char));
